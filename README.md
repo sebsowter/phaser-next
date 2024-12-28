@@ -1,5 +1,8 @@
 # Communicate Between Next.js and Phaser
 
+React: v19
+Next.js: v15
+
 ## Demo
 
 https://phaser-next.vercel.app/
