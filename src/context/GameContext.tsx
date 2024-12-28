@@ -25,8 +25,9 @@ export interface GameProviderProps extends PropsWithChildren {
 }
 
 export function GameProvider({ children, eventRef }: GameProviderProps) {
-  const [isDisabled, setDisabled] = useState(true);
+  const [isReady, setReady] = useState(false);
   const [counter, setCounter] = useState(0);
+
   const gameSceneRef = useRef<GameScene | null>(null);
 
   function onIncrementCounter() {
@@ -36,7 +37,7 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
   function onGameSceneReady(gameScene: GameScene) {
     gameSceneRef.current = gameScene;
 
-    setDisabled(false);
+    setReady(true);
   }
 
   useGameSceneReadyEvent(eventRef, onGameSceneReady);
@@ -47,7 +48,7 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
   }, [counter]);
 
   return (
-    <GameContext value={{ counter, eventRef, isDisabled, onIncrementCounter }}>
+    <GameContext value={{ counter, eventRef, isDisabled: !isReady, onIncrementCounter }}>
       <div className="max-w-2xl w-full" ref={eventRef}>
         {children}
       </div>
