@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { GameProvider } from "@/context/GameContext";
+import { GameProvider } from "@/context";
 
 import { GameCanvas } from "./GameCanvas";
 import { GameCounter } from "./GameCounter";
