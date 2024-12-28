@@ -1,11 +1,11 @@
 import { useGameContext } from "@/hooks/useGameContext";
 
 export function GameCounter() {
-  const { counter, isDisabled, onIncrementCounter } = useGameContext();
+  const { counter, incrementCounter, isDisabled } = useGameContext();
 
   return (
     <div className="text-center w-full">
-      <button disabled={isDisabled} className="bg-gray-800 px-4 py-2 disabled:text-gray-500" onClick={onIncrementCounter}>
+      <button disabled={isDisabled} className="bg-gray-800 px-4 py-2 disabled:text-gray-500" onClick={incrementCounter}>
         INCREMENT
       </button>
       <div className="p-2">
