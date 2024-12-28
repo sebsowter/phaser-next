@@ -7,7 +7,9 @@ export class LoaderScene extends Phaser.Scene {
     });
   }
 
-  preload() {}
+  preload() {
+    // Preload assets for GameScene
+  }
 
   create() {
     this.scene.start("game");

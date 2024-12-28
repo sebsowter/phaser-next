@@ -9,13 +9,15 @@ import { useIncrementCounterEvent } from "@/hooks/useIncrementCounterEvent";
 export interface GameContextProps {
   counter: number;
   eventRef: RefObject<HTMLDivElement | null>;
-  incrementCounter: () => void;
+  isSceneReady: boolean;
+  onIncrementCounter: () => void;
 }
 
 export const GameContext = createContext<GameContextProps>({
   counter: 0,
   eventRef: createRef(),
-  incrementCounter: () => {},
+  isSceneReady: false,
+  onIncrementCounter: () => {},
 });
 
 export interface GameProviderProps extends PropsWithChildren {
@@ -23,18 +25,17 @@ export interface GameProviderProps extends PropsWithChildren {
 }
 
 export function GameProvider({ children, eventRef }: GameProviderProps) {
+  const [isSceneReady, setSceneReady] = useState(false);
   const [counter, setCounter] = useState(0);
 
   const gameSceneRef = useRef<GameScene | null>(null);
 
-  const incrementCounter = useCallback(() => setCounter((value) => value + 1), []);
+  const onIncrementCounter = useCallback(() => setCounter((value) => value + 1), []);
 
   const onGameSceneReady = useCallback((gameScene: GameScene) => {
     gameSceneRef.current = gameScene;
-  }, []);
 
-  const onIncrementCounter = useCallback(() => {
-    setCounter((value) => value + 1);
+    setSceneReady(true);
   }, []);
 
   useGameSceneReadyEvent(eventRef, onGameSceneReady);
@@ -45,8 +46,10 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
   }, [counter]);
 
   return (
-    <GameContext value={{ counter, eventRef, incrementCounter }}>
-      <div ref={eventRef}>{children}</div>
+    <GameContext value={{ counter, eventRef, isSceneReady, onIncrementCounter }}>
+      <div className="max-w-2xl w-full" ref={eventRef}>
+        {children}
+      </div>
     </GameContext>
   );
 }
