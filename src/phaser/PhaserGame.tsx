@@ -1,7 +1,7 @@
 import { RefObject } from "react";
 
-import { useGame } from "@/hooks/useGame";
 import { usePhaserGame } from "@/hooks/usePhaserGame";
+import { useGameEvents } from "@/hooks/useGameEvents";
 
 import { config } from "./config";
 
@@ -12,7 +12,7 @@ export interface GameRendererProps {
 export default function PhaserGame({ eventRef }: GameRendererProps) {
   const parent = "phaser-container";
 
-  useGame(eventRef);
+  useGameEvents(eventRef);
   usePhaserGame({ ...config, parent });
 
   return <div id={parent} />;

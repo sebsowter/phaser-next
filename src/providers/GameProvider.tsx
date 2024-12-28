@@ -1,43 +1,29 @@
 "use client";
 
-import { createContext, createRef, PropsWithChildren, RefObject, useEffect, useRef, useState } from "react";
+import { PropsWithChildren, RefObject, useCallback, useEffect, useRef, useState } from "react";
 
+import { GameContext } from "@/context";
 import { GameScene } from "@/phaser/scenes";
 import { useGameSceneReadyEvent } from "@/hooks/useGameSceneReadyEvent";
 import { useIncrementCounterEvent } from "@/hooks/useIncrementCounterEvent";
-
-export interface GameContextProps {
-  counter: number;
-  eventRef: RefObject<HTMLDivElement | null>;
-  isDisabled: boolean;
-  onIncrementCounter: () => void;
-}
-
-export const GameContext = createContext<GameContextProps>({
-  counter: 0,
-  eventRef: createRef(),
-  isDisabled: false,
-  onIncrementCounter: () => {},
-});
 
 export interface GameProviderProps extends PropsWithChildren {
   eventRef: RefObject<HTMLDivElement | null>;
 }
 
 export function GameProvider({ children, eventRef }: GameProviderProps) {
-  const [isDisabled, setDisabled] = useState(true);
+  const [isSceneReady, setSceneReady] = useState(false);
   const [counter, setCounter] = useState(0);
+
   const gameSceneRef = useRef<GameScene | null>(null);
 
-  function onIncrementCounter() {
-    setCounter((value) => value + 1);
-  }
+  const onIncrementCounter = useCallback(() => setCounter((value) => value + 1), []);
 
-  function onGameSceneReady(gameScene: GameScene) {
+  const onGameSceneReady = useCallback((gameScene: GameScene) => {
     gameSceneRef.current = gameScene;
 
-    setDisabled(false);
-  }
+    setSceneReady(true);
+  }, []);
 
   useGameSceneReadyEvent(eventRef, onGameSceneReady);
   useIncrementCounterEvent(eventRef, onIncrementCounter);
@@ -47,7 +33,7 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
   }, [counter]);
 
   return (
-    <GameContext value={{ counter, eventRef, isDisabled, onIncrementCounter }}>
+    <GameContext value={{ counter, eventRef, isDisabled: !isSceneReady, onIncrementCounter }}>
       <div className="max-w-2xl w-full" ref={eventRef}>
         {children}
       </div>
