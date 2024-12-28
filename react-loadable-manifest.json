@@ -1,0 +1,21 @@
+{
+  "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
+    "id": 5203,
+    "files": [
+      "static/chunks/203.2b4c1ee4fbe3a7cf.js"
+    ]
+  },
+  "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
+    "id": 6218,
+    "files": [
+      "static/chunks/218.57a830a2c55ba802.js"
+    ]
+  },
+  "components\\GameCanvas.tsx -> @/phaser": {
+    "id": 3003,
+    "files": [
+      "static/chunks/8f005c66.465788379fa9d876.js",
+      "static/chunks/3.e7159f6d189b95cb.js"
+    ]
+  }
+}
