@@ -12,10 +12,8 @@ export function Game() {
 
   return (
     <GameProvider eventRef={eventRef}>
-      <div className="flex flex-col items-center justify-center mx-auto max-w-4xl py-8">
-        <GameCounter />
-        <GameCanvas eventRef={eventRef} />
-      </div>
+      <GameCounter />
+      <GameCanvas eventRef={eventRef} />
     </GameProvider>
   );
 }
