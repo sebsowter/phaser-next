@@ -1,4 +1,6 @@
-# Communicate Between Next.js and Phaser
+# Next.js and Phaser template
+
+Next.js and Phaser template.
 
 - React v19
 - Next.js v15
