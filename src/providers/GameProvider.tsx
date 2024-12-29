@@ -12,7 +12,7 @@ export interface GameProviderProps extends React.PropsWithChildren {
 }
 
 export function GameProvider({ children, eventRef }: GameProviderProps) {
-  const [isSceneReady, setSceneReady] = useState(false);
+  const [isGameSceneReady, setGameSceneReady] = useState(false);
   const [counter, setCounter] = useState(0);
   const gameSceneRef = useRef<GameScene | null>(null);
 
@@ -23,7 +23,7 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
   function onGameSceneReady(gameScene: GameScene) {
     gameSceneRef.current = gameScene;
 
-    setSceneReady(true);
+    setGameSceneReady(true);
   }
 
   useGameSceneReadyEvent(eventRef, onGameSceneReady);
@@ -34,7 +34,7 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
   }, [counter]);
 
   return (
-    <GameContext value={{ counter, eventRef, isDisabled: !isSceneReady, incrementCounter }}>
+    <GameContext value={{ counter, eventRef, isDisabled: !isGameSceneReady, incrementCounter }}>
       <div ref={eventRef}>{children}</div>
     </GameContext>
   );
