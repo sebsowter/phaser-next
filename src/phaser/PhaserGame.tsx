@@ -1,12 +1,10 @@
-import { RefObject } from "react";
-
 import { usePhaserGame } from "@/hooks/usePhaserGame";
 import { useGameEvents } from "@/hooks/useGameEvents";
 
 import { config } from "./config";
 
 export interface GameRendererProps {
-  eventRef: RefObject<HTMLDivElement | null>;
+  eventRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function PhaserGame({ eventRef }: GameRendererProps) {
