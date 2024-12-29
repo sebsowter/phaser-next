@@ -1,14 +1,14 @@
 "use client";
 
-import { PropsWithChildren, RefObject, useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { GameContext } from "@/context";
+import { GameContext } from "@/context/GameContext";
 import { useGameSceneReadyEvent } from "@/hooks/useGameSceneReadyEvent";
 import { useIncrementCounterEvent } from "@/hooks/useIncrementCounterEvent";
 import { GameScene } from "@/phaser/scenes";
 
-export interface GameProviderProps extends PropsWithChildren {
-  eventRef: RefObject<HTMLDivElement | null>;
+export interface GameProviderProps extends React.PropsWithChildren {
+  eventRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export function GameProvider({ children, eventRef }: GameProviderProps) {
@@ -21,11 +21,11 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
     setCounter((value) => value + 1);
   }
 
-  const onGameSceneReady = useCallback((gameScene: GameScene) => {
+  function onGameSceneReady(gameScene: GameScene) {
     gameSceneRef.current = gameScene;
 
     setSceneReady(true);
-  }, []);
+  }
 
   useGameSceneReadyEvent(eventRef, onGameSceneReady);
   useIncrementCounterEvent(eventRef, incrementCounter);

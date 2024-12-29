@@ -1,8 +1,8 @@
-import { createContext, createRef, RefObject } from "react";
+import { createContext, createRef } from "react";
 
 export interface GameContextProps {
   counter: number;
-  eventRef: RefObject<HTMLDivElement | null>;
+  eventRef: React.RefObject<HTMLDivElement | null>;
   incrementCounter: () => void;
   isDisabled: boolean;
 }
