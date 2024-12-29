@@ -14,7 +14,6 @@ export interface GameProviderProps extends React.PropsWithChildren {
 export function GameProvider({ children, eventRef }: GameProviderProps) {
   const [isSceneReady, setSceneReady] = useState(false);
   const [counter, setCounter] = useState(0);
-
   const gameSceneRef = useRef<GameScene | null>(null);
 
   function incrementCounter() {
