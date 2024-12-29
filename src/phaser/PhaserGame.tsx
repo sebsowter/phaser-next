@@ -1,5 +1,5 @@
-import { usePhaserGame } from "@/hooks/usePhaserGame";
 import { useGameEvents } from "@/hooks/useGameEvents";
+import { usePhaserGame } from "@/hooks/usePhaserGame";
 
 import { config } from "./config";
 
