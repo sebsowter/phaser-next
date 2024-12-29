@@ -1,4 +1,4 @@
-# Next.js and Phaser template
+# Next.js and Phaser Template
 
 Next.js and Phaser template. Communicate between server side components and Phaser.
 
