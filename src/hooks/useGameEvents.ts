@@ -12,12 +12,9 @@ export function useGameEvents(eventRef: React.RefObject<HTMLDivElement | null>) 
     [eventRef]
   );
 
-  const handleIncrementCounter = useCallback(
-    (scene: GameScene) => {
-      eventRef.current?.dispatchEvent(new CustomEvent(GameEvent.INCREMENT_COUNTER, { detail: scene }));
-    },
-    [eventRef]
-  );
+  const handleIncrementCounter = useCallback(() => {
+    eventRef.current?.dispatchEvent(new CustomEvent(GameEvent.INCREMENT_COUNTER));
+  }, [eventRef]);
 
   useEffect(() => {
     EventBus.on(GameEvent.GAME_SCENE_READY, handleGameSceneReady);
