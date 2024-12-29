@@ -2,6 +2,7 @@
 
 Next.js and Phaser template. Communicate between server side components and Phaser.
 
+
 - React v19
 - Next.js v15
 
