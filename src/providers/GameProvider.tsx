@@ -30,7 +30,7 @@ export function GameProvider({ children, eventRef }: GameProviderProps) {
   useIncrementCounterEvent(eventRef, incrementCounter);
 
   useEffect(() => {
-    gameSceneRef?.current?.setCounter(counter);
+    gameSceneRef.current?.setCounter(counter);
   }, [counter]);
 
   return (
