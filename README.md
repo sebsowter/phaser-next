@@ -5,6 +5,8 @@ Next.js and Phaser template. Communicate between server side components and Phas
 - React v19
 - Next.js v15
 
+Tailwind included (cos you all like that nowadays right?).
+
 ## Demo
 
 https://phaser-next.vercel.app/
